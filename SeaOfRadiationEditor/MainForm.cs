@@ -19,21 +19,21 @@ public partial class MainForm : Form
         switch (e.CustomName)
         {
             case "Reset":
-                if (e.CurrentValueGetSuccessful && SystemProfile.ResetFuncStart)
+                if (e.CurrentValueGetSuccessful && checkBox1.Checked)
                 {
                     if (!sender.Write(int.Parse(textBox1.Text)))
                         Trace.WriteLine($"ResetÐ´ÈëÊ§°Ü");
                 }
                 break;
             case "TimeCounter":
-                if (e.CurrentValueGetSuccessful && SystemProfile.TimeCounterFuncStart)
+                if (e.CurrentValueGetSuccessful && checkBox2.Checked)
                 {
                     if (!sender.Write(float.Parse(textBox2.Text)))
                         Trace.WriteLine("TimeCounterÐ´ÈëÊ§°Ü");
                 }
                 break;
             case "Stamina":
-                if (e.CurrentValueGetSuccessful && SystemProfile.StaminaFuncStart)
+                if (e.CurrentValueGetSuccessful && checkBox3.Checked)
                 {
                     if (!sender.Write(float.Parse(textBox3.Text)))
                         Trace.WriteLine("StaminaÐ´ÈëÊ§°Ü");
@@ -44,69 +44,104 @@ public partial class MainForm : Form
         }
     }
 
-    private void CheckBox1_CheckedChanged(object sender, EventArgs e)
+    private async void CheckBox1_CheckedChanged(object sender, EventArgs e)
     {
         if (sender is CheckBox checkBox)
         {
             if (checkBox.Checked)
             {
-                if (CheckGameStart(checkBox))
+                if (CheckGameStart())
                 {
-                    SystemProfile.ResetFuncStart = true;
-                    Program.Manager["Reset"].Write(int.Parse(textBox1.Text));
+                    try
+                    {
+                        textBox1.Enabled = false;
+                        Program.Manager["Reset"].Write(int.Parse(textBox1.Text));
+                        await Program.Manager["Stamina"].StartListen();
+                    }
+                    catch (Exception ex)
+                    {
+                        Trace.WriteLine(ex.ToString());
+                    }
+                }
+                else
+                {
+                    checkBox1.Checked = false;
                 }
             }
             else
             {
-                SystemProfile.ResetFuncStart = false;
+                textBox1.Enabled = true;
             }
         }
     }
 
-    private void CheckBox2_CheckedChanged(object sender, EventArgs e)
+    private async void CheckBox2_CheckedChanged(object sender, EventArgs e)
     {
         if (sender is CheckBox checkBox)
         {
             if (checkBox.Checked)
             {
-                if (CheckGameStart(checkBox))
+                if (CheckGameStart())
                 {
-                    SystemProfile.TimeCounterFuncStart = true;
-                    Program.Manager["TimeCounter"].Write(float.Parse(textBox2.Text));
+                    try
+                    {
+                        textBox2.Enabled = false;
+                        Program.Manager["TimeCounter"].Write(float.Parse(textBox2.Text));
+                        await Program.Manager["Stamina"].StartListen();
+                    }
+                    catch (Exception ex)
+                    {
+                        Trace.WriteLine(ex.ToString());
+                    }
+                }
+                else
+                {
+                    checkBox2.Checked = false;
                 }
             }
             else
             {
-                SystemProfile.TimeCounterFuncStart = false;
+                textBox2.Enabled = true;
             }
         }
     }
 
-    private void CheckBox3_CheckedChanged(object sender, EventArgs e)
+    private async void CheckBox3_CheckedChanged(object sender, EventArgs e)
     {
         if (sender is CheckBox checkBox)
         {
             if (checkBox.Checked)
             {
-                if (CheckGameStart(checkBox))
+                if (CheckGameStart())
                 {
-                    SystemProfile.StaminaFuncStart = true;
-                    Program.Manager["Stamina"].Write(float.Parse(textBox3.Text));
+                    try
+                    {
+                        textBox3.Enabled = false;
+                        Program.Manager["Stamina"].Write(float.Parse(textBox3.Text));
+                        await Program.Manager["Stamina"].StartListen();
+                    }
+                    catch (Exception ex)
+                    {
+                        Trace.WriteLine(ex.ToString());
+                    }
+                }
+                else
+                {
+                    checkBox3.Checked = false;
                 }
             }
             else
             {
-                SystemProfile.StaminaFuncStart = false;
+                textBox3.Enabled = true;
             }
         }
     }
 
-    private static bool CheckGameStart(CheckBox checkBox)
+    private static bool CheckGameStart()
     {
         if (!SystemProfile.IsGameRunning)
         {
             MessageBox.Show("ÇëÆô¶¯ÓÎÏ·");
-            RemoveAllCheck();
             return false;
         }
         return true;
@@ -114,8 +149,8 @@ public partial class MainForm : Form
 
     public static void RemoveAllCheck()
     {
-        SystemProfile.ResetFuncStart = false;
-        SystemProfile.TimeCounterFuncStart = false;
-        SystemProfile.StaminaFuncStart = false;
+        Current?.Invoke(() => Current.checkBox1.Checked = false);
+        Current?.Invoke(() => Current.checkBox2.Checked = false);
+        Current?.Invoke(() => Current.checkBox3.Checked = false);
     }
 }
