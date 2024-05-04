@@ -1,19 +1,26 @@
 using System.Diagnostics;
 using XFEExtension.NetCore.MemoryEditor;
+using XFEExtension.NetCore.MemoryEditor.Manager;
 
 namespace SeaOfRadiationEditor;
 
 public partial class MainForm : Form
 {
     public static MainForm? Current { get; set; }
+    public DynamicMemoryItem resetItem;
+    public DynamicMemoryItem timeCounterItem;
+    public DynamicMemoryItem staminaItem;
     public MainForm()
     {
         InitializeComponent();
         Current = this;
         Program.Manager.ValueChanged += Manager_ValueChanged;
+        resetItem = Program.Manager["Reset"];
+        timeCounterItem = Program.Manager["TimeCounter"];
+        staminaItem = Program.Manager["Stamina"];
     }
 
-    private void Manager_ValueChanged(XFEExtension.NetCore.MemoryEditor.Manager.MemoryItem sender, MemoryValue e)
+    private void Manager_ValueChanged(MemoryItem sender, MemoryValue e)
     {
         Trace.WriteLine($"名称：{e.CustomName} 地址：{sender:X}\t是否读取到值  上次：{e.PreviousValueGetSuccessful}  这次：{e.CurrentValueGetSuccessful}  值从：{e.PreviousValue}  变更为：{e.CurrentValue}");
         switch (e.CustomName)
@@ -55,8 +62,9 @@ public partial class MainForm : Form
                     try
                     {
                         textBox1.Enabled = false;
+                        await Task.Delay(5);
                         Program.Manager["Reset"].Write(int.Parse(textBox1.Text));
-                        await Program.Manager["Stamina"].StartListen();
+                        resetItem.Write(int.Parse(textBox1.Text));
                     }
                     catch (Exception ex)
                     {
@@ -86,8 +94,9 @@ public partial class MainForm : Form
                     try
                     {
                         textBox2.Enabled = false;
+                        await Task.Delay(5);
                         Program.Manager["TimeCounter"].Write(float.Parse(textBox2.Text));
-                        await Program.Manager["Stamina"].StartListen();
+                        timeCounterItem.Write(float.Parse(textBox2.Text));
                     }
                     catch (Exception ex)
                     {
@@ -117,8 +126,9 @@ public partial class MainForm : Form
                     try
                     {
                         textBox3.Enabled = false;
+                        await Task.Delay(5);
                         Program.Manager["Stamina"].Write(float.Parse(textBox3.Text));
-                        await Program.Manager["Stamina"].StartListen();
+                        staminaItem.Write(float.Parse(textBox3.Text));
                     }
                     catch (Exception ex)
                     {

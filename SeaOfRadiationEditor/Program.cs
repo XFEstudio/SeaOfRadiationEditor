@@ -9,13 +9,13 @@ internal static class Program
         .BuildDynamicManager(
         MemoryItemBuilder.Create<int>("Reset")
                          .WithResolvePointer("mono-2.0-bdwgc.dll", 0x0072A200, 0x14A0, 0x0, 0x80, 0xE4, 0x0, 0x1EC)
-                         .WithListener(10),
+                         .WithListener(10, true),
         MemoryItemBuilder.Create<float>("TimeCounter")
                          .WithResolvePointer("mono-2.0-bdwgc.dll", 0x0072A200, 0x12E8, 0x0, 0x80, 0xE4, 0x0, 0x1E0)
-                         .WithListener(10),
+                         .WithListener(10, true),
         MemoryItemBuilder.Create<float>("Stamina")
                          .WithResolvePointer("mono-2.0-bdwgc.dll", 0x0072A200, 0x14E0, 0x48, 0x10, 0x20, 0x50, 0x20, 0x1B0)
-                         .WithListener(10));
+                         .WithListener(10, true));
     /// <summary>
     ///  The main entry point for the application.
     /// </summary>

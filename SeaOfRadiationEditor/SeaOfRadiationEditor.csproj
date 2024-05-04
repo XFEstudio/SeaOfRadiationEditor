@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\XFEExtension.NetCore.MemoryEditor\XFEExtension.NetCore.MemoryEditor\XFEExtension.NetCore.MemoryEditor.csproj" />
+    <PackageReference Include="XFEExtension.NetCore.MemoryEditor" Version="2.0.3" />
   </ItemGroup>
 
   <ItemGroup>

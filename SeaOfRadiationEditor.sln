@@ -4,21 +4,28 @@ VisualStudioVersion = 17.10.34814.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeaOfRadiationEditor", "SeaOfRadiationEditor\SeaOfRadiationEditor.csproj", "{49E255F9-BBA4-40F1-BAEE-8895377CFD02}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XFEExtension.NetCore.MemoryEditor", "..\XFEExtension.NetCore.MemoryEditor\XFEExtension.NetCore.MemoryEditor\XFEExtension.NetCore.MemoryEditor.csproj", "{377109F0-EF73-4849-8539-A0E9B8FA19DA}"
-EndProject
 Global
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {323E9E46-3ADA-4FC5-8CD2-95C40584C8CD}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{377109F0-EF73-4849-8539-A0E9B8FA19DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{377109F0-EF73-4849-8539-A0E9B8FA19DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{377109F0-EF73-4849-8539-A0E9B8FA19DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{377109F0-EF73-4849-8539-A0E9B8FA19DA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{49E255F9-BBA4-40F1-BAEE-8895377CFD02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{49E255F9-BBA4-40F1-BAEE-8895377CFD02}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49E255F9-BBA4-40F1-BAEE-8895377CFD02}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49E255F9-BBA4-40F1-BAEE-8895377CFD02}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
+1-B890-0B63165E6BD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A11B32F3-12A7-4551-B890-0B63165E6BD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A11B32F3-12A7-4551-B890-0B63165E6BD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A11B32F3-12A7-4551-B890-0B63165E6BD0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
