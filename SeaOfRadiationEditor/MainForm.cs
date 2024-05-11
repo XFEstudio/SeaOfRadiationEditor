@@ -64,7 +64,6 @@ public partial class MainForm : Form
                         textBox1.Enabled = false;
                         await Task.Delay(5);
                         Program.Manager["Reset"].Write(int.Parse(textBox1.Text));
-                        resetItem.Write(int.Parse(textBox1.Text));
                     }
                     catch (Exception ex)
                     {

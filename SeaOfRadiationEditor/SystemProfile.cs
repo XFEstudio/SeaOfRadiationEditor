@@ -1,6 +1,4 @@
-﻿using XFEExtension.NetCore.ProfileExtension;
-
-namespace SeaOfRadiationEditor;
+﻿namespace SeaOfRadiationEditor;
 
 public static class SystemProfile
 {
